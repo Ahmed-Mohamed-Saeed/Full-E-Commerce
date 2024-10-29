@@ -13,7 +13,7 @@ const Footer = () => {
           <div className='vert-line'></div>
           <Link to = "/" className='text-uppercase'>About SnapUp.</Link>
         </div>
-        <span className='text-white copyright-text text-manrope fs-14 fw-3'>2023 &copy; Ahmed Saeed. All Rights Reserved.</span>
+        <span className='text-white copyright-text text-manrope fs-14 fw-3'>2024 &copy; Ahmed Saeed. All Rights Reserved.</span>
       </div>
     </footer>
   )

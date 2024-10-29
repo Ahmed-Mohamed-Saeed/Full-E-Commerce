@@ -22,10 +22,16 @@ const Product = ({ product }) => {
             <span className="fw-7">{product?.brand}</span>
           </div>
           <div className="title py-2">{product?.title}</div>
-          <div class="navbar-cart flex align-center">
-            <Link class="cart-btn" to={`/cart`} onClick={() => { addToCartHandler(product)}}>
-              <i class="fa-solid fa-cart-shopping dark-cart"></i>
-            </Link>
+          <div className="navbar-cart flex align-center">
+            <button 
+              className="cart-btn" 
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCartHandler(product);
+              }}
+            >
+              <i className="fa-solid fa-cart-shopping dark-cart"></i>
+            </button>
           </div>
           <div className="price flex align-center justify-center">
             <span className="old-price">{formatPrice(product?.price)}</span>

@@ -1,25 +1,39 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../store/cartSlice";
 import "./CartModal.scss";
-import { shopping_cart } from '../../utils/images';
-import { formatPrice } from '../../utils/helpers';
+import { shopping_cart } from "../../utils/images";
+import { formatPrice } from "../../utils/helpers";
+import { GrFormClose } from "react-icons/gr";
 
-const CartModal = ({carts}) => {
+const CartModal = ({ carts }) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     <div className='cart-modal'>
-      <h5 className='cart-modal-title fw-5 fs-15 font-manrope text-center'>Recenlty Added Products</h5>
+      <h5 className='cart-modal-title fw-5 fs-15 font-manrope text-center'>Recently Added Products</h5>
       {
         (carts?.length > 0) ? (
           <div className='cart-modal-list grid'>
             {
               carts.map(cart => {
                 return (
-                  <div className='cart-modal-item grid align-center font-manrope py-2' key = {cart.id}>
+                  <div className='cart-modal-item grid align-center font-manrope py-2' key={cart.id}>
                     <div className='cart-modal-item-img'>
-                      <img src = {cart?.thumbnail} alt = "" className='img-cover' />
+                      <img src={cart?.thumbnail} alt="" className='img-cover' />
                     </div>
                     <div className='cart-modal-item-title fs-13 font-manrope text-capitalize'>{cart?.title}</div>
-                    <div className='cart-modal-item-price text-orange fs-14 fw-6'>
-                      {formatPrice(cart?.discountedPrice)}
+                    <div className='flex align-center cart-modal-item-price-remove'>
+                      <div className='cart-modal-item-price text-orange fs-14 fw-6'>
+                        {formatPrice(cart?.discountedPrice)}
+                      </div>
+                      <div onClick={() => handleRemoveFromCart(cart.id)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                        <GrFormClose className="text-black cartMenu" size={21} />
+                      </div>
                     </div>
                   </div>
                 )
@@ -27,15 +41,16 @@ const CartModal = ({carts}) => {
             }
 
             <div className='text-capitalize view-cart-btn bg-orange fs-15 font-manrope text-center'>view my shopping cart</div>
-          </div>) : (
-          <div className = "flex flex-column align-center justify-center cart-modal-empty">
-            <img src = {shopping_cart} alt = "" className='' />
+          </div>
+        ) : (
+          <div className="flex flex-column align-center justify-center cart-modal-empty">
+            <img src={shopping_cart} alt="" className='' />
             <h6 className='text-dark fw-4'>No products yet</h6>
           </div>
         )
       }
     </div>
-  )
-}
+  );
+};
 
-export default CartModal
+export default CartModal;

@@ -12,8 +12,8 @@ const Sidebar = () => {
   const categories = useSelector(getAllCategories);
 
   useEffect(() => {
-    dispatch(fetchAsyncCategories())
-  }, [dispatch])
+    dispatch(fetchAsyncCategories());
+  }, [dispatch]);
 
   return (
     <aside className={`sidebar ${isSidebarOn ? 'hide-sidebar' : ""}`}>
@@ -24,10 +24,10 @@ const Sidebar = () => {
         <div className='cat-title fs-17 text-uppercase fw-6 ls-1h'>All Categories</div>
         <ul className='cat-list'>
           {
-            categories.map((category, idx) => {
+            categories?.map((category, idx) => {
               return (
                 <li key = {idx} onClick = {() => dispatch(setSidebarOff())}>
-                  <Link to = {`category/${category}`} className='cat-list-link text-capitalize'>{category.replace("-", " ")}</Link>
+                  <Link to={`category/${category.title.replace(/\s+/g, "-")}`} className='cat-list-link text-capitalize'>{category.title.replace(/\s+/g, " ")}</Link>
                 </li>
               )
             })

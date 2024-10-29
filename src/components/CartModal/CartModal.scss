@@ -47,15 +47,19 @@
 
     &-list{
         .cart-modal-item{
-            grid-template-columns: 64px auto 65px;
-            column-gap: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
             &-img{
                 width: 60px;
                 height: 60px;
             }
             &-title{
                 color: rgba(0, 0, 0, 0.85);
+                flex-grow: 1;
+                margin-right: 10px;
             }
         }
     }
@@ -77,5 +81,10 @@
         margin-top: 1.8rem;
         margin-left: auto;
         border-radius: 2px;
+    }
+
+    .cartMenu:hover {
+        color: #ed1d24;
+        transition: 0.4s;
     }
 }
